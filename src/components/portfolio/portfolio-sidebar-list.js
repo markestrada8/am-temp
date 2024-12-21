@@ -1,6 +1,6 @@
-import React from "react";
-import PortfolioItem from "./portfolio-item";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react"
+import PortfolioItem from "./portfolio-item"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const PortfolioSidebarList = (props) => {
     const portfolioList = props.data.map(portfolioItem => {
@@ -11,25 +11,25 @@ const PortfolioSidebarList = (props) => {
                 </div>
 
                 <div className="text-content">
-                  <div className="title">{portfolioItem.name}</div>
+                    <div className="title">{portfolioItem.name}</div>
 
-                  <div className="actions">
-                    <a className="action-icon" 
-                     onClick={() => props.handleEditClick(portfolioItem)}>
-                        <FontAwesomeIcon icon="edit" />
-                    </a>
+                    <div className="actions">
+                        <a className="action-icon"
+                            onClick={() => props.handleEditClick(portfolioItem)}>
+                            <FontAwesomeIcon icon="edit" />
+                        </a>
 
-                    <a className="action-icon" onClick={() => props.handleDeleteClick(portfolioItem)}>
-                        <FontAwesomeIcon icon="trash" />
-                    </a>
-                  </div>
+                        <a className="action-icon" onClick={() => props.handleDeleteClick(portfolioItem)}>
+                            <FontAwesomeIcon icon="trash" />
+                        </a>
+                    </div>
                 </div>
             </div>
-        );
-    });
+        )
+    })
 
     return <div className="portfolio-sidebar-list-wrapper">{portfolioList}</div>
-};
+}
 
 
 export default PortfolioSidebarList;

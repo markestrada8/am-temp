@@ -1,36 +1,36 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from "react"
+import axios from "axios"
 
-import PortfolioSidebarList from "../portfolio/portfolio-sidebar-list";
-import PortfolioForm from "../portfolio/portfolio-form";
+import PortfolioSidebarList from "../portfolio/portfolio-sidebar-list"
+import PortfolioForm from "../portfolio/portfolio-form"
 
 export default class PortfolioManager extends Component {
   constructor() {
-    super();
+    super()
 
     this.state = {
       portfolioItems: [],
       portfolioToEdit: {}
-    };
+    }
 
-    this.handleNewFormSubmission = this.handleNewFormSubmission.bind(this);
-    this.handleEditFormSubmission = this.handleEditFormSubmission.bind(this);
-    this.handleFormSubmissionError = this.handleFormSubmissionError.bind(this);
-    this.handleDeleteClick = this.handleDeleteClick.bind(this);
-    this.handleEditClick = this.handleEditClick.bind(this);
-    this.clearPortfolioToEdit = this.clearPortfolioToEdit.bind(this);
+    this.handleNewFormSubmission = this.handleNewFormSubmission.bind(this)
+    this.handleEditFormSubmission = this.handleEditFormSubmission.bind(this)
+    this.handleFormSubmissionError = this.handleFormSubmissionError.bind(this)
+    this.handleDeleteClick = this.handleDeleteClick.bind(this)
+    this.handleEditClick = this.handleEditClick.bind(this)
+    this.clearPortfolioToEdit = this.clearPortfolioToEdit.bind(this)
   }
 
   clearPortfolioToEdit() {
     this.setState({
       portfolioToEdit: {}
-    });
+    })
   }
 
   handleEditClick(portfolioItem) {
     this.setState({
       portfolioToEdit: portfolioItem
-    });
+    })
   }
 
   handleDeleteClick(portfolioItem) {
@@ -42,29 +42,29 @@ export default class PortfolioManager extends Component {
       .then(response => {
         this.setState({
           portfolioItems: this.state.portfolioItems.filter(item => {
-            return item.id !== portfolioItem.id;
+            return item.id !== portfolioItem.id
           })
-        });
+        })
 
-        return response.data;
+        return response.data
       })
       .catch(error => {
-        console.log("handleDeleteClick error", error);
-      });
+        console.log("handleDeleteClick error", error)
+      })
   }
 
   handleEditFormSubmission() {
-    this.getPortfolioItems();
+    this.getPortfolioItems()
   }
 
   handleNewFormSubmission(portfolioItem) {
     this.setState({
       portfolioItems: [portfolioItem].concat(this.state.portfolioItems)
-    });
+    })
   }
 
   handleFormSubmissionError(error) {
-    console.log("handleFormSubmissionError error", error);
+    console.log("handleFormSubmissionError error", error)
   }
 
   getPortfolioItems() {
@@ -78,15 +78,15 @@ export default class PortfolioManager extends Component {
       .then(response => {
         this.setState({
           portfolioItems: [...response.data.portfolio_items]
-        });
+        })
       })
       .catch(error => {
-        console.log("error in getPortfolioItems", error);
-      });
+        console.log("error in getPortfolioItems", error)
+      })
   }
 
   componentDidMount() {
-    this.getPortfolioItems();
+    this.getPortfolioItems()
   }
 
   render() {
@@ -110,6 +110,6 @@ export default class PortfolioManager extends Component {
           />
         </div>
       </div>
-    );
+    )
   }
 }

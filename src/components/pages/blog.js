@@ -162,7 +162,4 @@ class Blog extends Component {
 
 export default Blog
 
-window.innerHeight
-document.documentElement.scrollTop
-document.documentElement.offsetHeight
 

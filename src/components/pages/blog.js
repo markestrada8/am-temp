@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
-import BlogItem from "../blog/blog-item";
-import BlogModal from "../modals/blog-modal";
-import { faL } from "@fortawesome/free-solid-svg-icons";
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import axios from "axios"
+import BlogItem from "../blog/blog-item"
+import BlogModal from "../modals/blog-modal"
+// import { faL } from "@fortawesome/free-solid-svg-icons";
 
 class Blog extends Component {
     constructor() {
-        super();
+        super()
 
         this.state = {
             blogItems: [],
@@ -16,35 +16,35 @@ class Blog extends Component {
             currentPage: 0,
             isLoading: true,
             blogModalIsOpen: false,
-        };
+        }
 
-        this.getBlogItems = this.getBlogItems.bind(this);
-        this.onScroll = this.onScroll.bind(this);
-        window.addEventListener("scroll", this.onScroll, false);
-        this.handleNewBlogClick = this.handleNewBlogClick.bind(this);
-        this.handleModalClose = this.handleModalClose.bind(this);
-        this.handleSuccessfulNewBlogSubmission = this.handleSuccessfulNewBlogSubmission.bind(this);
-        this.handleDeleteClick = this.handleDeleteClick.bind(this);
+        this.getBlogItems = this.getBlogItems.bind(this)
+        this.onScroll = this.onScroll.bind(this)
+        window.addEventListener("scroll", this.onScroll, false)
+        this.handleNewBlogClick = this.handleNewBlogClick.bind(this)
+        this.handleModalClose = this.handleModalClose.bind(this)
+        this.handleSuccessfulNewBlogSubmission = this.handleSuccessfulNewBlogSubmission.bind(this)
+        this.handleDeleteClick = this.handleDeleteClick.bind(this)
     }
 
     handleDeleteClick(blog) {
         axios
-         .delete(
-            `https://api.devcamp.space/portfolio/portfolio_blogs/${blog.id}`, 
-            { withCredentials: true }
-        )
-        .then(response => {
-            this.setState({
-                blogItems: this.state.blogItems.filter(blogItem => {
-                    return blog.id !== blogItem.id;
+            .delete(
+                `https://api.devcamp.space/portfolio/portfolio_blogs/${blog.id}`,
+                { withCredentials: true }
+            )
+            .then(response => {
+                this.setState({
+                    blogItems: this.state.blogItems.filter(blogItem => {
+                        return blog.id !== blogItem.id
+                    })
                 })
-            });
 
-            return response.data;
-        })
-        .catch(error => {
-            console.log("delete blog error", error);
-        });
+                return response.data
+            })
+            .catch(error => {
+                console.log("delete blog error", error)
+            })
     }
 
     handleSuccessfulNewBlogSubmission(blog) {
@@ -67,53 +67,53 @@ class Blog extends Component {
     }
 
     onScroll() {
-        if (this.state.isLoading || 
+        if (this.state.isLoading ||
             this.state.blogItems.length === this.state.totalCount
         ) {
-            return;
+            return
         }
 
         if (
-             (window.innerHeight + document.documentElement.scrollTop) === document.documentElement.offsetHeight
+            (window.innerHeight + document.documentElement.scrollTop) === document.documentElement.offsetHeight
         ) {
-           
-            this.getBlogItems();
+
+            this.getBlogItems()
         }
     }
-    
+
     getBlogItems() {
-        this.setState ({
+        this.setState({
             currentPage: this.state.currentPage + 1
-        });
+        })
 
         axios
-        .get(
-            `https://alexismcintosh.devcamp.space/portfolio/portfolio_blogs?page=${this
-            .state.currentPage}`, 
-            {
-            withCredentials: true
-            }
-        )
-        .then(response => {
-            console.log("gettting", response.data);
-            this.setState ({
-                blogItems: this.state.blogItems.concat(response.data.portfolio_blogs),
-                totalCount: response.data.meta.total_records,
-                isLoading: false
-            });
-        })
-        .catch(error => {
-            console.log("getBlogItems error", error);
-        });
+            .get(
+                `https://alexismcintosh.devcamp.space/portfolio/portfolio_blogs?page=${this
+                    .state.currentPage}`,
+                {
+                    withCredentials: true
+                }
+            )
+            .then(response => {
+                console.log("gettting", response.data)
+                this.setState({
+                    blogItems: this.state.blogItems.concat(response.data.portfolio_blogs),
+                    totalCount: response.data.meta.total_records,
+                    isLoading: false
+                })
+            })
+            .catch(error => {
+                console.log("getBlogItems error", error)
+            })
     }
 
 
     componentWillMount() {
-        this.getBlogItems();
+        this.getBlogItems()
     }
 
     componentWillUnmount() {
-        window.removeEventListener("scroll", this.onScroll, false);
+        window.removeEventListener("scroll", this.onScroll, false)
     }
 
     render() {
@@ -126,17 +126,17 @@ class Blog extends Component {
                     </div>
                 )
             } else {
-            return <BlogItem key={blogItem.id} blogItem={blogItem} />
+                return <BlogItem key={blogItem.id} blogItem={blogItem} />
             }
-        });
+        })
 
         return (
             <div className="blog-container">
-                <BlogModal 
+                <BlogModal
                     handleSuccessfulNewBlogSubmission={
                         this.handleSuccessfulNewBlogSubmission}
                     handleModalClose={this.handleModalClose}
-                    modalIsOpen={this.state.blogModalIsOpen} 
+                    modalIsOpen={this.state.blogModalIsOpen}
                 />
 
                 {this.props.loggedInStatus === "LOGGED_IN" ? (
@@ -145,22 +145,22 @@ class Blog extends Component {
                             <FontAwesomeIcon icon="plus-circle" />
                         </a>
                     </div>
-                ) : null} 
+                ) : null}
 
 
                 <div className="content-container">{blogRecords}</div>
 
                 {this.state.isLoading ? (
-                <div className="content-loader">
+                    <div className="content-loader">
                         <FontAwesomeIcon icon="spinner" spin />
-                    </div> 
-                ) : null }
+                    </div>
+                ) : null}
             </div>
         )
     }
 }
 
-export default Blog;
+export default Blog
 
 window.innerHeight
 document.documentElement.scrollTop

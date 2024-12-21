@@ -1,13 +1,14 @@
 @mixin base-btn {
     cursor: pointer;
     height: 42px;
+    padding: 0 25px;
     font-size: 1em;
     font-weight: 500;
     border: 1px solid transparent;
     transition: all 0.5s ease-in-out;
     background-color: $teal;
     color: white;
-
+    // border-radius: 7px;
 
     &:active,
     &:focus {
@@ -21,13 +22,11 @@
 
 @mixin input-element {
     input {
-        font-family: "Titillium Web", sans-serif;
+        font-family: "Roboto", sans-serif;
         color: $charcoal;
         padding: 5px 0px;
         width: 100%;
-        border-top: 0px;
-        border-right: 0px;
-        border-left: 0px;
+        border: 0px;
         border-bottom: 1px solid $teal;
         background-color: transparent;
         transition: 0.5s all ease-in-out;
@@ -41,7 +40,7 @@
     }
 }
 
-@mixin base-grid() {
+@mixin base-grid {
     display: grid;
-    grid-gap: 21px;
+    gap: 21px;
 }

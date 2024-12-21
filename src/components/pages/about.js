@@ -13,7 +13,9 @@ export default function () {
                 }}
             />
             <div className="right-column">
-                <div className="top-about">
+                <div
+                // className="top-about"
+                >
                     Hi! I'm Alexis, a biology graduate turned software developer.
                     I earned my Bachelor’s degree in Biology from Brigham Young University–Hawaii,
                     where I developed a passion for problem-solving and adaptability.
@@ -37,7 +39,9 @@ export default function () {
                     <li>Portfolio Website: Responsive site showcasing my skills and projects (React.js, CSS)</li>
                     <li>Task Manager App: Full-stack application for task organization (Node.js, Express.js, MongoDB)</li>
                 </ul>
-                <div className="bottom-about">
+                <div
+                // className="bottom-about"
+                >
                     Interests
                     Outside of coding, I enjoy exploring nature,
                     tackling fitness challenges like CrossFit,

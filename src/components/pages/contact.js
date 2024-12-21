@@ -24,7 +24,7 @@ export default function () {
                         </div>
                     </div>
 
-                    <div className="bullet-point-group">
+                    <div className="contact-bullet-point-group">
                         <div className="icon">
                             <FontAwesomeIcon icon="envelope" />
                         </div>

@@ -1,12 +1,12 @@
 .portfolio-form-wrapper {
     @include base-grid();
-    grid-template-columns: 1 fr;
+    grid-template-columns: 1fr;
     padding: 42px;
 
     @include input-element();
 
     input {
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
 
     .image-uploaders {
@@ -16,6 +16,7 @@
         .portfolio-manager-image-wrapper {
             img {
                 width: 100%;
+                max-width: 120px;
                 height: 120px;
                 object-fit: cover;
                 border-radius: 5px;

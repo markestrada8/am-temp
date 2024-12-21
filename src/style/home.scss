@@ -1,10 +1,10 @@
-.homepage-wrapper {
+.homepage-container {
     display: grid;
     grid-template-columns: 1fr;
 
-    .filter-links {
+    .filter-buttons {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
 
         .btn {
             width: 100%;

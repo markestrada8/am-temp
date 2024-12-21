@@ -11,8 +11,6 @@ import {
     faLock
 } from "@fortawesome/free-solid-svg-icons"
 
-
-
 const Icons = () => {
     return library.add(
         faTrash,
